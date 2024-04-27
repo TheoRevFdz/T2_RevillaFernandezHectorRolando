@@ -1,0 +1,60 @@
+﻿@model IEnumerable<T2_RevillaFernandezHectorRolando.Models.Ventas>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-striped">
+    <thead class="table-primary">
+        <tr>
+            <th>
+                Nro
+            </th>
+            <th>
+                Descripcion
+            </th>
+            <th>
+                Cantidad
+            </th>
+            <th>
+                Precio Unitario
+            </th>
+            <th>
+                SubTotal
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio_unitario)
+            </td>
+            <td>
+                @{var subTotal = item.precio_unitario * item.cantidad;}
+                @subTotal
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
